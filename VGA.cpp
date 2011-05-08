@@ -524,7 +524,7 @@ void VGA::initSprite(byte id, long sprite[32]) {
 }
 
 // Description: Initialize a 32x32 pixel sprite with X Bitmap (XBM) data, storing the data on the shield for later drawing.
-// Syntax: VGAInstance.initSprite(id, xbmdata)
+// Syntax: VGAInstance.initSpriteXbm(id, xbmdata)
 // Parameter: id - Sprite ID to initialize
 // Parameter: xbmdata - Sprite data, as XBM formatted data
 // Returns: none
