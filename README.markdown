@@ -12,6 +12,14 @@ VGA(*address*)
 ### Returns
 Instance of VGA associated with a specific VGA Shield.
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+
 ## begin()
 
 ### Description
@@ -24,6 +32,19 @@ Initialize the shield and start communicating with it.
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+    }
 
 ## clearScreen()
 
@@ -39,6 +60,22 @@ Clear the screen.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Clear the screen
+      vgaInstance.clearScreen();
+    }
+
 ## setResolution()
 
 ### Description
@@ -52,6 +89,22 @@ Set the current screen resolution.
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set the resolution to 640x480
+      vgaInstance.setResolution(RES_640x480);
+    }
 
 ## setDisplayPage()
 
@@ -67,6 +120,23 @@ Set which memory page is currently being displayed.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set the current display page to 2, so all video on the VGA output will come from page 2
+      // NOTE: multi-page support is only available in 320x240 resolution
+      vgaInstance.setDisplayPage(2);
+    }
+
 ## setReadPage()
 
 ### Description
@@ -80,6 +150,23 @@ Set which memory page is used for read operations.
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set the current read page to 2, so all future calls which read pixels will read them from page 2
+      // NOTE: multi-page support is only available in 320x240 resolution
+      vgaInstance.setReadPage(2);
+    }
 
 ## setWritePage()
 
@@ -95,6 +182,23 @@ Set which memory page is used for write operations.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set the current write page to 2, so all future drawing will take place on page 2
+      // NOTE: multi-page support is only available in 320x240 resolution
+      vgaInstance.setWritePage(2);
+    }
+
 ## setBackground()
 
 ### Description
@@ -109,6 +213,22 @@ Set the background colour used for drawing opaque text.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set the background colour of any text drawn in the future to green
+      vgaInstance.setBackground(vgaInstance.generateColour(0, 255, 0));
+    }
+
 ## fillShapes()
 
 ### Description
@@ -122,6 +242,22 @@ Set whether any shapes drawn are filled or outlined.  Affects only newly drawn s
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set any future shapes drawn to be filled
+      vgaInstance.fillShapes(1);
+    }
 
 ## copyArea()
 
@@ -142,6 +278,22 @@ Copy one rectangular area of the screen onto another area.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Copy a 100x100 pixel rectangular area of the currently displayed image from pixel location 50, 50 to 200, 200
+      vgaInstance.copyArea(50, 50, 200, 200, 100, 100);
+    }
+
 ## drawPixel()
 
 ### Description
@@ -157,6 +309,22 @@ Draw a single pixel.
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Draw a red pixel at screen location 50, 50
+      vgaInstance.drawPixel(50, 50, vgaInstance.generateColour(255, 0, 0));
+    }
 
 ## drawLine()
 
@@ -176,6 +344,22 @@ Draw a line.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Draw a green line from screen location 50, 50 to 150, 150
+      vgaInstance.drawLine(50, 50, 150, 150, vgaInstance.generateColour(0, 255, 0));
+    }
+
 ## drawLine()
 
 ### Description
@@ -194,6 +378,22 @@ Draw a rectangle.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Draw a green line from screen location 50, 50 to 150, 150
+      vgaInstance.drawLine(50, 50, 150, 150, vgaInstance.generateColour(0, 255, 0));
+    }
+
 ## drawCircle()
 
 ### Description
@@ -210,6 +410,22 @@ Draw a circle.
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Draw a red circle centered at screen location 250, 250, with a radius of 50 pixels
+      vgaInstance.drawCircle(250, 250, 50, vgaInstance.generateColour(255, 0, 0));
+    }
 
 ## drawEllipse()
 
@@ -228,6 +444,22 @@ Draw an ellipse/oval.
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Draw a green ellipse centered at screen location 250, 250, with a radius of 50 pixels across and 25 pixels up/down
+      vgaInstance.drawEllipse(250, 250, 50, 25, vgaInstance.generateColour(255, 0, 0));
+    }
 
 ## replaceColour()
 
@@ -248,6 +480,22 @@ Replace one colour with another in a certain rectangular area.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Replace all black pixels with purple pixels in a rectangular area from pixel location 50, 50 to 150, 150
+      vgaInstance.replaceColour(50, 50, 150, 150, vgaInstance.generateColour(0, 0, 0), vgaInstance.generateColour(255, 0, 255));
+    }
+
 ## setFont()
 
 ### Description
@@ -262,6 +510,22 @@ Set the current font to use when drawing characters or text.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set the font for future text drawing operations to 12x16 pixel proportional
+      vgaInstance.setFont(FONT_12x16_PROP);
+    }
+
 ## textBackgroundOpaque()
 
 ### Description
@@ -275,6 +539,22 @@ Set whether text is drawn with a transparent or opaque background.
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set text background to transparent for all future text drawing operations
+      vgaInstance.textBackgroundOpaque(0);
+    }
 
 ## initSprite()
 
@@ -291,6 +571,31 @@ Initialize an 8x8 pixel sprite, storing the data on the shield for later drawing
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set up an 8x8 pixel sprite at ID 2 to later draw with drawSprite()
+      byte spriteData[8];
+      spriteData[0] = 0x18;
+      spriteData[1] = 0x24;
+      spriteData[2] = 0x42;
+      spriteData[3] = 0x81;
+      spriteData[4] = 0x81;
+      spriteData[5] = 0x42;
+      spriteData[6] = 0x24;
+      spriteData[7] = 0x18;
+      vgaShield.initSprite(2, spriteData);
+    }
+
 ## initSprite()
 
 ### Description
@@ -305,6 +610,31 @@ Initialize a 16x16 pixel sprite, storing the data on the shield for later drawin
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set up an 8x8 pixel sprite at ID 2 to later draw with drawSprite()
+      byte spriteData[8];
+      spriteData[0] = 0x18;
+      spriteData[1] = 0x24;
+      spriteData[2] = 0x42;
+      spriteData[3] = 0x81;
+      spriteData[4] = 0x81;
+      spriteData[5] = 0x42;
+      spriteData[6] = 0x24;
+      spriteData[7] = 0x18;
+      vgaShield.initSprite(2, spriteData);
+    }
 
 ## initSprite()
 
@@ -321,13 +651,38 @@ Initialize a 32x32 pixel sprite, storing the data on the shield for later drawin
 ### Returns
 none
 
-## initSprite()
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set up an 8x8 pixel sprite at ID 2 to later draw with drawSprite()
+      byte spriteData[8];
+      spriteData[0] = 0x18;
+      spriteData[1] = 0x24;
+      spriteData[2] = 0x42;
+      spriteData[3] = 0x81;
+      spriteData[4] = 0x81;
+      spriteData[5] = 0x42;
+      spriteData[6] = 0x24;
+      spriteData[7] = 0x18;
+      vgaShield.initSprite(2, spriteData);
+    }
+
+## initSpriteXbm()
 
 ### Description
 Initialize a 32x32 pixel sprite with X Bitmap (XBM) data, storing the data on the shield for later drawing.
 
 ### Syntax
-*VGAInstance*.initSprite(*id*, *xbmdata*)
+*VGAInstance*.initSpriteXbm(*id*, *xbmdata*)
 
 ### Parameters
 *id* - Sprite ID to initialize
@@ -335,6 +690,37 @@ Initialize a 32x32 pixel sprite with X Bitmap (XBM) data, storing the data on th
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // array of XBM data to turn into a sprite
+    static byte xbmdata_bits[] = {
+      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC0, 0xFF, 0x0F, 0x00, 
+      0xC0, 0xFF, 0x0F, 0x00, 0xC0, 0x0F, 0xCF, 0x00, 0xC0, 0x0F, 0xCF, 0x00, 
+      0xC0, 0x0F, 0x0F, 0x00, 0xC0, 0x0F, 0x0F, 0x00, 0xC0, 0x0F, 0xFF, 0x03, 
+      0xC0, 0x0F, 0xFF, 0x03, 0xC0, 0x0F, 0xFF, 0x03, 0xC0, 0x0F, 0xFF, 0x03, 
+      0xC0, 0xFF, 0xFF, 0x03, 0xC0, 0xFF, 0xFF, 0x03, 0xC0, 0x0F, 0xFF, 0x03, 
+      0xC0, 0x0F, 0xFF, 0x03, 0xCC, 0xFF, 0xFF, 0x33, 0xCC, 0xFF, 0xFF, 0x33, 
+      0x0C, 0x00, 0x00, 0x30, 0x0C, 0x00, 0x00, 0x30, 0xFC, 0xFF, 0xFF, 0x3F, 
+      0xFC, 0xFF, 0xFF, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+      0xFC, 0xFF, 0xFF, 0x3F, 0xFC, 0xFF, 0xFF, 0x3F, 0xFC, 0xFF, 0xFF, 0x33, 
+      0xFC, 0xFF, 0xFF, 0x33, 0xFC, 0xFF, 0xFF, 0x3F, 0xFC, 0xFF, 0xFF, 0x3F, 
+      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, };
+    
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Set up a 32x32 pixel sprite from the data above at ID 2 to later draw with drawSprite()
+      vgaInstance.initSpriteXbm(0, xbmdata_bits);
+    }
 
 ## drawSprite()
 
@@ -353,6 +739,22 @@ Draw a previously-initialized sprite at a given location in a given colour.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Draw 8x8 pixel sprite ID 2 (previously set up using initSprite()) at pixel location 50, 50 in blue
+      vgaInstance.drawSprite(SPRITE_8x8, 2, 50, 50, vgaInstance.generateColour(0, 0, 255));
+    }
+
 ## drawCharacter()
 
 ### Description
@@ -369,6 +771,22 @@ Draw one character of text at a given text grid location using the previously se
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Draw a blue letter C at text grid location 10, 10
+      vgaInstance.drawCharacter('C', 10, 10, vgaInstance.generateColour(0, 0, 255));
+    }
 
 ## drawGraphicsCharacter()
 
@@ -389,6 +807,22 @@ Draw one character of text at a given pixel location.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Draw a large blue letter C at pixel location 200, 200
+      vgaInstance.drawGraphicsCharacter('C', 200, 200, 2, 2, vgaInstance.generateColour(0, 0, 255));
+    }
+
 ## drawText()
 
 ### Description
@@ -405,6 +839,22 @@ Draw a text string at a given text grid location.
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Draw the word "Ostrich" in red starting at text grid location 10, 10
+      vgaInstance.drawText("Ostrich", 10, 10, vgaInstance.generateColour(255, 0, 0));
+    }
 
 ## drawGraphicsText()
 
@@ -423,6 +873,22 @@ Draw a text string at a given pixel location.
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Draw a the word Ostrich in large green letters at pixel location 200, 200
+      vgaInstance.drawGraphicsText("Ostrich", 200, 200, 2, 2, vgaInstance.generateColour(0, 255, 0));
+    }
+
 ## displayImageFromRawSD()
 
 ### Description
@@ -438,6 +904,22 @@ Display an image stored on a raw (non-FAT) SD card.  This image needs to be stor
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Display image at index 0 of a raw (non-FAT) MicroSD card
+      vgaInstance.displayImageFromRawSD(0, 150, 150);
+    }
 
 ## playVideoFromRawSD()
 
@@ -456,6 +938,22 @@ Display a video clip stored on a raw (non-FAT) SD card.  This video needs to be 
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Play the video stored at index 0 of a raw (non-FAT) MicroSD card at pixel location 150, 150, with 33mS between each frame
+      vgaInstance.playVideoFromRawSD(0, 150, 150, 33);
+    }
+
 ## displayImageFromSD()
 
 ### Description
@@ -473,6 +971,23 @@ Display an image from a GCI file stored on a microSD card.  GCI files can be cre
 ### Returns
 none
 
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Display image at index 0 of file ostrich.gci at pixel location 150, 150
+      // ostrich.gci would need to be created using 4D Graphics Composer
+      vgaInstance.displayImageFromSD("ostrich.gci", 0, 150, 150);
+    }
+
 ## generateColour()
 
 ### Description
@@ -488,4 +1003,22 @@ Generate a PackedColour from red/green/blue values, which can then be passed to 
 
 ### Returns
 none
+
+### Example
+    #include <Wire.h>
+    #include <MultiSerial.h>
+    #include <VGA.h>
+    
+    // Create a VGA instance to communicate with the shield at address 0x4D
+    VGA vgaInstance = VGA(0x4D);
+    
+    void setup() {
+      PackedColour colour;
+      
+      // Initialize the shield to get it ready to communicate with
+      vgaInstance.begin();
+      
+      // Store the colour blue in the 'colour' variable for later use
+      colour = vgaInstance.generateColour(255, 0, 0);
+    }
 
