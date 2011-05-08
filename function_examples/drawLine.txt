@@ -1,0 +1,14 @@
+#include <Wire.h>
+#include <MultiSerial.h>
+#include <VGA.h>
+
+// Create a VGA instance to communicate with the shield at address 0x4D
+VGA vgaInstance = VGA(0x4D);
+
+void setup() {
+  // Initialize the shield to get it ready to communicate with
+  vgaInstance.begin();
+  
+  // Draw a green line from screen location 50, 50 to 150, 150
+  vgaInstance.drawLine(50, 50, 150, 150, vgaInstance.generateColour(0, 255, 0));
+}

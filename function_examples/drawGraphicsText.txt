@@ -1,0 +1,14 @@
+#include <Wire.h>
+#include <MultiSerial.h>
+#include <VGA.h>
+
+// Create a VGA instance to communicate with the shield at address 0x4D
+VGA vgaInstance = VGA(0x4D);
+
+void setup() {
+  // Initialize the shield to get it ready to communicate with
+  vgaInstance.begin();
+  
+  // Draw a the word Ostrich in large green letters at pixel location 200, 200
+  vgaInstance.drawGraphicsText("Ostrich", 200, 200, 2, 2, vgaInstance.generateColour(0, 255, 0));
+}

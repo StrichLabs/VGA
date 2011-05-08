@@ -1,0 +1,23 @@
+#include <Wire.h>
+#include <MultiSerial.h>
+#include <VGA.h>
+
+// Create a VGA instance to communicate with the shield at address 0x4D
+VGA vgaInstance = VGA(0x4D);
+
+void setup() {
+  // Initialize the shield to get it ready to communicate with
+  vgaInstance.begin();
+  
+  // Set up an 8x8 pixel sprite at ID 2 to later draw with drawSprite()
+  byte spriteData[8];
+  spriteData[0] = 0x18;
+  spriteData[1] = 0x24;
+  spriteData[2] = 0x42;
+  spriteData[3] = 0x81;
+  spriteData[4] = 0x81;
+  spriteData[5] = 0x42;
+  spriteData[6] = 0x24;
+  spriteData[7] = 0x18;
+  vgaShield.initSprite(2, spriteData);
+}

@@ -1,0 +1,16 @@
+#include <Wire.h>
+#include <MultiSerial.h>
+#include <VGA.h>
+
+// Create a VGA instance to communicate with the shield at address 0x4D
+VGA vgaInstance = VGA(0x4D);
+
+void setup() {
+  PackedColour colour;
+  
+  // Initialize the shield to get it ready to communicate with
+  vgaInstance.begin();
+  
+  // Store the colour blue in the 'colour' variable for later use
+  colour = vgaInstance.generateColour(255, 0, 0);
+}
