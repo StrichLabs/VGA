@@ -1,2 +1,11 @@
-INSTALL coming soon! :)
- -sen
+Installation instructions for the Strich Labs VGA Shield Library
+----------------------------------------------------------------
+
+1. Inside the Arduino IDE, open Preferences and find your Sketchbook Location.
+2. Create a directory called "Libraries" in your Sketchbook location, if it does not already exist.
+3. Copy this entire folder as-is into the Libraries folder created in Step 2.
+4. Download the MultiSerial library (which is a dependency for the VGA Shield) from https://github.com/StrichLabs/MultiSerial/archives/master and install it by copying the entire folder, the same as in Step 3.
+5. Restart the Arduino IDE if it was running.
+6. When you launch the Arduino IDE, use Sketch->Import Library->MultiSerial to begin using the library.
+
+If you have any trouble, email us at support@strichlabs.com for help!
