@@ -7,16 +7,17 @@
 #ifndef VGA_h
 #define VGA_h
 
+#if ARDUINO < 100 // Arduino pre-1.0
 // include core Wiring API
 #include "WProgram.h"
 // include types & constants of Wiring core API
 #include "WConstants.h"
+#else // Arduino 1.0 or above
+#include "Arduino.h"
+#endif // ARDUINO < 100
 
-// TODO: comment
+// include the MultiSerial library, which is used to communicate with this shield
 #include "MultiSerial.h"
-
-// include print support
-//#include "Stream.h"
 
 // Control functions
 #define CMD_AUTOBAUD    0x55  // void
